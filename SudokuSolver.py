@@ -1,4 +1,4 @@
-
+from tkinter import *
 
 #Is the entire sudoku solved correctly already?
 def isSolvedBoard(board):
@@ -99,8 +99,14 @@ hard = [[0, 0, 0, 2, 0, 0, 0, 6, 3],
 ####change the puzzle####
 puzzle = easy1
 #########################
-for row in range(len(puzzle)):
-    for col in range(len(puzzle[0])):
-        print(sudokuSolver(puzzle)[row][col], end='')
-        print(' ', end='')
-    print('\n', end='')
+
+##########################
+    #DISPLAY#
+##########################
+
+r = 0
+for r in range(len(puzzle)):
+    for c in range(len(puzzle[0])):
+        Label(text=sudokuSolver(puzzle)[r][c], bg='blue', relief=RIDGE, width=5).grid(row=r,column=c)
+
+mainloop()
