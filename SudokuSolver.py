@@ -97,7 +97,22 @@ hard = [[0, 0, 0, 2, 0, 0, 0, 6, 3],
      [4, 7, 0, 0, 0, 1, 0, 0, 0]]
 
 ####change the puzzle####
+puzzles = [(solved, 'solved'), (easy1, 'easy1'), (easy2,'easy2'), (medium, 'medium'), (hard, 'hard')]
+buttons = []
+puzzleChoice = Tk()
 puzzle = easy1
+
+def puzzlePick(i):
+    puzzle = puzzles[i][0]
+    print(puzzles[i][1])
+    puzzleChoice.destroy()
+
+for i in range(len(puzzles)):
+  b = Button(text=puzzles[i][1], width=10, command= lambda i=i: puzzlePick(i))
+  b.grid()
+  buttons.append(b)
+
+puzzleChoice.mainloop()
 #########################
 
 ##########################
