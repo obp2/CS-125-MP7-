@@ -105,20 +105,14 @@ buttons = []
 puzzleChoice = Tk()
 
 
-def puzzlePick(i, edge):
-    if i == edge:
-      edgePuzzlePick()
+def puzzlePick(i):
     global puzzle
     puzzle = puzzles[i][0]
     print(puzzles[i][1])
     puzzleChoice.destroy()
 
-def edgePuzzlePick():
-  race = True
-  puzzleChoice.destroy()
-
 for i in range(len(puzzles)):
-  b = Button(text=puzzles[i][1], width = 20, command= lambda i=i: puzzlePick(i, len(puzzles)))
+  b = Button(text=puzzles[i][1], width = 20, command= lambda i=i: puzzlePick(i))
   b.grid()
   buttons.append(b)
 
