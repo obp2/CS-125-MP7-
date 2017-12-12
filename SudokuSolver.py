@@ -1,4 +1,5 @@
-
+from tkinter import *
+from timeit import default_timer as timer
 
 #Is the entire sudoku solved correctly already?
 def isSolvedBoard(board):
@@ -96,11 +97,40 @@ hard = [[0, 0, 0, 2, 0, 0, 0, 6, 3],
      [5, 0, 3, 7, 0, 0, 0, 0, 8],
      [4, 7, 0, 0, 0, 1, 0, 0, 0]]
 
+
 ####change the puzzle####
-puzzle = easy1
+#Generate Array of Buttons assigned to each array
+puzzles = [(solved, 'solved'), (easy1, 'easy1'), (easy2,'easy2'), (medium, 'medium'), (hard, 'hard')]
+buttons = []
+puzzleChoice = Tk()
+
+
+def puzzlePick(i, edge):
+    if i == edge:
+      edgePuzzlePick()
+    global puzzle
+    puzzle = puzzles[i][0]
+    print(puzzles[i][1])
+    puzzleChoice.destroy()
+
+def edgePuzzlePick():
+  race = True
+  puzzleChoice.destroy()
+
+for i in range(len(puzzles)):
+  b = Button(text=puzzles[i][1], width = 20, command= lambda i=i: puzzlePick(i, len(puzzles)))
+  b.grid()
+  buttons.append(b)
+
+puzzleChoice.mainloop()
 #########################
-for row in range(len(puzzle)):
-    for col in range(len(puzzle[0])):
-        print(sudokuSolver(puzzle)[row][col], end='')
-        print(' ', end='')
-    print('\n', end='')
+
+##########################
+    #DISPLAY#
+##########################
+#Generates solutions and displays in a grid
+solvedPuzzle = sudokuSolver(puzzle)
+for r in range(len(puzzle)):
+    for c in range(len(puzzle[0])):
+        Label(text=solvedPuzzle[r][c], bg='pink', relief=RIDGE, width=5).grid(row=r,column=c)
+mainloop()
